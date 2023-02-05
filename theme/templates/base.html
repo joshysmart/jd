@@ -1,0 +1,33 @@
+{% load static tailwind_tags %} {% load icons %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}symptom checker{% endblock %}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static './favicon/favicon.ico' %}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static './favicon/apple-touch-icon.png' %}"
+    />
+
+    {% tailwind_css %}
+    <script
+      src="https://kit.fontawesome.com/1970de0f51.js"
+      crossorigin="anonymous"a2
+    ></script>
+  </head>
+
+  <body class="leading-normal tracking-normal">
+    <div class="wrapper flex flex-col items-center justify-center min-h-screen">
+      {% block content %} {% endblock %}
+    </div>
+    <script src="{% static '/js/script.js' %}"></script>
+  </body>
+</html>

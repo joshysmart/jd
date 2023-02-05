@@ -1,0 +1,17 @@
+<h1 class="text-2xl xl:text-3xl mb-5 leading-8">
+  {% if ".com" in user.get_username %}
+    Hi, I'm JD, <br>I can be your personal health <br>assistant
+  {% else %}
+    Hi {{ user|title }}, I'm JD, <br>I can be your personal health <br>assistant
+  {% endif %}
+</h1>
+
+
+<a href="{% url "start" %}" class="text-sm xl:text-base font-semibold bg-jd-blue text-white rounded-full px-8 py-4 block w-[280px] text-center">Start symptom assessment</a>
+
+<div class="mt-20 hidden xl:block">
+  <h3 class="font-semibold text-xl ">Get tips from our medical team</h3>
+  <a href="#articles" class="text-base block mt-2">
+    Read up-to-date articles on health and fitness.
+  </a>
+</div>

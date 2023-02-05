@@ -1,0 +1,22 @@
+{% load icons %}
+<div class="container flex flex-col xl:flex-row justify-between min-h-screen xl:min-h-max xl:py-20 pt-16">
+  <div class="illustration xl:w-1/2">
+    <div class="flex items-center justify-between lg:hidden px-6">
+      <p class="text-2xl font-semibold">New assessment</p>
+      <button class="close-btn text-4xl text-gray-500">{% icon 'close' extra_classes='my-fa-close'%}</button>
+    </div>
+    {% load static %} <img src="{% static "./assets/illustration-two.svg" %}" class="mix-blend-multiply">
+  </div>
+  <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
+    <div class="xl:flex items-center justify-between hidden ">
+      <p class="text-3xl font-extrabold">New assessment</p>
+      <button class="text-4xl">{% icon 'close' %}</button>
+    </div>
+    <div class="my-auto ">
+      <h1 class="text-xl lg:text-3xl">I get smarter the more you <br> talk to me, so I'm going to ask <br> a few questions</h1>
+      <div class="flex justify-end">
+        <a href="{% url "name" %}" class="text-sm xl:text-base font-semibold w-[150px] border border-jd-blue text-jd-blue rounded-full px-8 py-4 text-center mt-4">Okay</a>
+      </div>
+    </div>
+  </div
+</

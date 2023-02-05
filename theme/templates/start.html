@@ -1,0 +1,9 @@
+{% extends "base.html" %} 
+{% block title %}Symptoms checker - Assessment{% endblock %}
+{% block content %}
+  {% if not user.profile_completed  %}
+    {% include "./includes/profile.html" %}
+  {% else %}
+    {% include "./includes/new_profile.html" %}
+  {% endif %}
+{% endblock %}

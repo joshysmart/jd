@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+
+<!--Register-->
+<div
+  class="container min-h-screen xl:min-h-max flex flex-col xl:flex-row items-center justify-between xl:py-20 pt-16"
+>
+  <div class="illustration lg:w-1/2 hidden lg:block">
+    {% load static %} <img src="{% static "./assets/illustration-one.svg" %}"
+    class="mix-blend-multiply">
+  </div>
+
+  <div class="w-full lg:w-[45%] px-6">
+    <h2 class="text-xl lg:text-3xl font-semibold">Create your account</h2>
+    <p class="text-sm lg:text-base mt-2">Sign up with an email and password</p>
+    <form method="POST" class="flex flex-col gap-2 mt-4">
+      {% csrf_token %} 
+      {{ signup_form }}
+      {% comment %} {{ signup_form }} {% endcomment %}
+      <button class="bg-jd-blue py-4 px-8 rounded-full text-white mt-10" type="submit">Register</button>
+    </form>
+    <p class="text-center text-sm lg:text-base mt-2">
+      If you already have an account,
+      <a href="{% url 'login' %}" class="text-jd-purple">Log in</a> instead.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

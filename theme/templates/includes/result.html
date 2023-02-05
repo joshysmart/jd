@@ -1,0 +1,39 @@
+{% load icons %} 
+<div
+  class="container flex flex-col xl:flex-row justify-between min-h-screen xl:min-h-max xl:py-20 pt-16"
+>
+  <div class="illustration lg:w-1/2">
+    <div class="flex items-center justify-end xl:hidden px-6">
+      <button class="close-btn text-4xl text-gray-500">
+        {% icon 'close' extra_classes='my-fa-close'%}
+      </button>
+    </div>
+    {% load static %} <img src="{% static "./assets/illustration-two.svg" %}"
+    class="mix-blend-multiply">
+  </div>
+  <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
+    <div class="xl:flex items-center justify-end hidden">
+      <button class="close-btn text-4xl text-gray-500">
+        {% icon 'close' extra_classes='my-fa-close'%}
+      </button>
+    </div>    
+    <div class="my-auto">
+      <h1 class="text-xl lg:text-3xl font-semibold">Search for a symptom</h1>
+      <form method="POST" class="flex flex-col gap-2 mt-4" id="form">
+        {% csrf_token %}
+        {{ search_form }}
+      </form>
+      <div class="mt-6">
+        {% for issue in diagnosis %}
+          <div class="mt-6"> 
+            <h3 class="text-2xl font-medium">{{ issue|first }}</h3>
+            <p class="text-green-700 text-sm xl:text-base font-semibold">{{ issue|last }}</p>
+            <div class="flex justify-end">
+              <a href="{% url "diagnosis" issue.1 pronoun %}" class="text-sm xl:text-base font-semibold w-[200px] border border-jd-blue text-jd-blue rounded-full px-8 py-4 text-center mt-4 block">Select symptom</a> 
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>  
+  </div>
+</div>

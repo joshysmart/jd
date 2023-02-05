@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wrapper {
+    background: radial-gradient(47.95% 47.95% at 34.41% 52.05%,
+            rgba(51, 239, 251, 0.15) 0%,
+            rgba(51, 239, 251, 0) 100%)
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+        ,
+        #ffffff;
+}
+
+.wrapper label {
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.wrapper input {
+    width: 100%;
+    display: block;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-color: #5053FF;
+    color: #A3A3A7;
+    margin: 1rem 0 .8rem 0;
+    border-radius: 9999px;
+}
+
+.wrapper input[type="radio"] {
+    display: none;
+}
+
+.wrapper .gender label {
+    width: 150px;
+    display: block;
+    padding: .8rem 2rem;
+    text-align: center;
+    margin: 0 0 .8rem 0;
+    color: #5053FF;
+    border: 1px solid #5053FF;
+    border-radius: 9999px;
+}

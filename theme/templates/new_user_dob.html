@@ -1,0 +1,15 @@
+{% extends "form.html" %} 
+{% block question %}
+  <h1 class="text-xl lg:text-3xl">What is {{ user.profiles.last.username|title }}'s date of birth?</h1>
+{% endblock %}
+{% block form %}
+  {% csrf_token %} {{ dob_form }}
+  <div class="flex items-center justify-end">
+    <button
+      class="bg-jd-blue py-4 px-8 rounded-full text-white mt-2 w-[150px]"
+      type="submit"
+    >
+      Send
+    </button>
+  </div>
+{% endblock form %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if not diagnosis %}
+    {% include "./includes/search.html" %} 
+{% else %}
+   {% include "./includes/result.html" %} 
+{% endif %} 
+{% endblock content %}
+

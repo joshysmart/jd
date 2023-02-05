@@ -1,0 +1,10 @@
+{% extends "form.html" %} 
+{% block question %}
+  <h1 class="text-xl lg:text-3xl">Ok {{ user|title }} what is your gender?</h1>
+{% endblock %}
+{% block form %} 
+  <div class="gender flex items-center justify-end">
+    {% csrf_token %} 
+    {{ gender_form }} 
+  </div>
+{% endblock form %}

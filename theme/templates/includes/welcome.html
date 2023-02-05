@@ -1,0 +1,19 @@
+<div class="container min-h-screen xl:min-h-max flex flex-col xl:flex-row items-center justify-between xl:py-20 pt-16">
+  <div class="illustration lg:w-1/2">
+    {% load static %} <img src="{% static "./assets/illustration-one.svg" %}" class="mix-blend-multiply">
+  </div>
+
+  <div class="px-6 xl:hidden">
+    <h2 class="text-xl font-semibold text-center">Check your symptoms</h2>
+    <p class="text-sm lg:text-base mt-2 text-center">Take  a few moment to complete your assessment</p>
+  </div>
+
+  <div class="px-6 pb-10 w-full lg:w-[45%]">
+    <div class="px-6 hidden xl:block mb-20">
+      <h2 class="text-xl lg:text-3xl font-semibold text-center">Check your symptoms</h2>
+      <p class="text-sm lg:text-base mt-2 text-center">Take  a few moment to complete your assessment</p>
+    </div>
+    <a href="{% url "signup" %}" class="text-sm xl:text-base font-semibold bg-jd-blue text-white rounded-full px-8 py-4 block w-full text-center">Create your account</a>
+    <a href="{% url "login" %}" class="text-sm xl:text-base font-semibold border border-jd-blue text-jd-blue rounded-full px-8 py-4 block w-full text-center mt-4">Log in</a>
+  </div>
+</div>

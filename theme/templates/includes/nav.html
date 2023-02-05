@@ -1,0 +1,82 @@
+{% load icons %}
+<nav class="w-full hidden xl:block pr-10">
+    <ul class="flex items-center justify-end gap-8">
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'home' %}
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'user' %}
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'read' %}
+                <span>Conditions</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'logout' %}
+                <span>Log out</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<nav class="w-full xl:hidden">
+    <ul class="flex items-center justify-center gap-8">
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'home' %}
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'user' %}
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'read' %}
+                <span>Conditions</span>
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'logout' %}"
+                class="flex flex-col items-center gap-1"
+            >
+                {% icon 'logout' %}
+                <span>Log out</span>
+            </a>
+        </li>
+    </ul>
+</nav>

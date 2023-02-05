@@ -1,0 +1,10 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %} 
+{% block title %}Symptoms checker - Home{% endblock %}
+{% block content %}
+  {% if user.is_authenticated %} 
+   {% include "./includes/start.html" %} 
+  {% else %}
+    {% include "./includes/welcome.html" %} 
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load icons %}
+<div class="container flex flex-col xl:flex-row justify-between min-h-screen xl:min-h-max xl:py-20 pt-16">
+  <div class="illustration xl:w-1/2">
+    <div class="flex items-center justify-between lg:hidden px-6">
+      <p class="text-2xl font-semibold">New assessment</p>
+      <button class="close-btn text-4xl text-gray-500">{% icon 'close' extra_classes='my-fa-close'%}</button>
+    </div>
+    {% load static %} <img src="{% static "./assets/illustration-two.svg" %}" class="mix-blend-multiply">
+  </div>
+  <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
+    <div class="xl:flex items-center justify-between hidden ">
+      <p class="text-3xl font-extrabold">New assessment</p>
+      <button class="text-4xl">{% icon 'close' %}</button>
+    </div>
+    <div class="my-auto ">
+      <h1 class="text-xl lg:text-3xl">Whose symptoms are <br> you tracking?</h1>
+      <div class="flex flex-col items-end">
+        <a href="{% url 'search' "you" %}" class="text-sm xl:text-base font-semibold w-[150px] border border-jd-blue text-jd-blue rounded-full px-8 py-4 text-center mt-4 block">Myself</a>
+        {% for fields in user.profiles.all %}
+          <a href="{% url 'search' fields.gender %}" class="text-sm xl:text-base font-semibold w-[150px] border border-jd-blue text-jd-blue rounded-full px-8 py-4 text-center mt-4 block">{{ fields.username|title }}</a>
+        {% endfor %}
+        <a href="{% url 'new-user' %}" class="text-sm xl:text-base font-semibold w-[200px] border border-jd-blue text-jd-blue rounded-full px-8 py-4 text-center mt-4 block">Someone else</a>
+      </div>
+    </div>
+  </div
+</

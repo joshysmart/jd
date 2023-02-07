@@ -68,7 +68,8 @@ I intend on making improvements to the site.
 ### Useful resources
 
 - [Dango tutorial](https://docs.djangoproject.com/en/4.1/intro/tutorial01/) - I kept referring to this website, and anything I didn't understand I took to their discord channel.
-- [Stack overflow](http://stackoverflow.com/) - of course -[Wesbos Ajax typeahead js30 feature](https://courses.wesbos.com/) I need to mention this
+- [Stack overflow](http://stackoverflow.com/) - of course
+- [Wesbos Ajax typeahead js30 feature](https://courses.wesbos.com/) I need to mention this
 
 ## Author
 

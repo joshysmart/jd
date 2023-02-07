@@ -23,12 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-AUTH_TOKEN = config('AUTH_TOKEN')
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["joshysmart.pythonanywhere.com"]
 
 TAILWIND_APP_NAME = 'theme'
 
@@ -57,8 +55,7 @@ INSTALLED_APPS = [
     'theme',
     "django_browser_reload",
     "django_icons",
-    'accounts.apps.AccountsConfig',
-    "symptoms.apps.SymptomsConfig"
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [

@@ -4,33 +4,27 @@
 >
   <div class="illustration lg:w-1/2">
     <div class="flex items-center justify-end xl:hidden px-6">
-      <button class="close-btn text-4xl text-gray-500">
+      <a href="{% url 'start' %}" class="close-btn text-4xl text-gray-500">
         {% icon 'close' extra_classes='my-fa-close'%}
-      </button>
+      </a>
     </div>
     {% load static %} <img src="{% static "./assets/illustration-two.svg" %}"
     class="mix-blend-multiply">
   </div>
   <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
     <div class="xl:flex items-center justify-end hidden">
-      <button class="close-btn text-4xl text-gray-500">
+      <a href="{% url 'start' %}" class="close-btn text-4xl text-gray-500">
         {% icon 'close' extra_classes='my-fa-close'%}
-      </button>
+      </a>
     </div>    
     <div class="my-auto">
-      <h1 class="text-xl lg:text-3xl">Lets start with the symptom that is troubling {{ pronoun }} the most</h1>
-      <form method="POST" class="flex flex-col gap-2 mt-4" id="form">
-        {% csrf_token %}
-        {{ search_form }}
-        <div class="gender flex items-center justify-end">
-          <button
-            class="bg-jd-blue py-4 px-8 rounded-full text-white mt-2 w-[150px]"
-            type="submit"
-          >
-            Search
-          </button>
-        </div>
-      </form>
+      <h1 class="text-xl lg:text-3xl">Please select the symptom that is troubling {{ pronoun }} the most</h1>
+      <div class="flex flex-col gap-2 mt-4" id="form">
+        <input type="text" name="symptom" id="id_symptom" placeholder="e.g. headache" data-pronoun={{ pronoun }}>
+        <ul class="suggestions">
+          
+        </ul>
+      </div>
     </div>  
   </div>
 </div>

@@ -13,16 +13,18 @@
   </div>
   <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
     <div class="xl:flex items-center justify-end hidden">
-      <button class="close-btn text-4xl text-gray-500">
+      <a href="{% url 'start' %}" class="close-btn text-4xl text-gray-500">
         {% icon 'close' extra_classes='my-fa-close'%}
-      </button>
+      </a>
     </div>    
     <div class="my-auto">
-      <h1 class="text-xl lg:text-3xl font-semibold">Search for a symptom</h1>
-      <form method="POST" class="flex flex-col gap-2 mt-4" id="form">
-        {% csrf_token %}
-        {{ search_form }}
-      </form>
+      <div>
+        <h1 class="text-xl lg:text-3xl font-semibold">Search for a symptom</h1>
+        <input type="text" name="symptom" id="id_symptom" placeholder="e.g. headache" data-pronoun={{ pronoun }}>
+        <ul class="suggestions">
+            
+        </ul>
+      </div>
       <div class="mt-6">
         {% for issue in diagnosis %}
           <div class="mt-6"> 

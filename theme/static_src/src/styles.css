@@ -42,3 +42,40 @@
     border: 1px solid #5053FF;
     border-radius: 9999px;
 }
+
+
+.wrapper .suggestions li {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    border-bottom: 1px solid #D8D8D8;
+    transition: background 0.2s;
+    text-transform: capitalize;
+}
+
+.wrapper .suggestions li:nth-child(even) {
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    background: linear-gradient(to bottom, #ffffff 0%, #EFEFEF 100%);
+}
+
+.wrapper .suggestions li:nth-child(odd) {
+    transform: perspective(100px) rotateX(-3deg) translateY(3px);
+    background: linear-gradient(to top, #ffffff 0%, #EFEFEF 100%);
+}
+
+.wrapper .suggestions li:hover {
+    background: linear-gradient(to top, #ffffff 0%, #c5c5c5 100%);
+}
+
+.wrapper .suggestions li a {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+.wrapper .suggestions li .nf {
+    display: block;
+    padding: 1rem 2rem;
+}
+
+.wrapper .name .hl {
+    color: #5053FF;
+}

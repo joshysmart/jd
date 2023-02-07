@@ -8,9 +8,9 @@
     <div class="illustration lg:w-1/2">
       <div class="flex items-center justify-between xl:hidden px-6">
         <p class="text-2xl font-semibold">New assessment</p>
-        <button class="close-btn text-4xl text-gray-500">
+        <a href="{% url 'start' %}" class="close-btn text-4xl text-gray-500">
           {% icon 'close' extra_classes='my-fa-close'%}
-        </button>
+        </a>
       </div>
       {% load static %} <img src="{% static "./assets/illustration-two.svg" %}"
       class="mix-blend-multiply">
@@ -18,9 +18,9 @@
     <div class="px-6 pb-10 w-full lg:w-[45%] flex flex-col">
       <div class="xl:flex items-center justify-between hidden">
         <p class="text-2xl font-semibold">New assessment</p>
-        <button class="close-btn text-4xl text-gray-500">
+        <a href="{% url 'start' %}" class="close-btn text-4xl text-gray-500">
           {% icon 'close' extra_classes='my-fa-close'%}
-        </button>
+        </a>
       </div>    
       <div class="my-auto">
         {% block question %}{% endblock question %}

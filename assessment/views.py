@@ -9,6 +9,7 @@ import json
 import datetime
 from decouple import config
 import requests
+from django.http import JsonResponse
 
 
 def get_token():
@@ -22,20 +23,16 @@ def get_token():
 
 
 def get_symptom_ids(user_symptom):
-    symptom_ids = []
-    with open("symptoms.json") as f:
-        lines = f.read()
-        symptoms_json = json.loads(lines)
-        for symptom_obj in symptoms_json:
-            symptom = symptom_obj["Name"].lower()
-            if user_symptom in symptom:
-                symptom_ids.append(symptom_obj["ID"])
-    return symptom_ids
+    endpoint = "https://healthservice.priaid.ch/symptoms?token={token}&format=json&language=en-gb"
+    token = get_token()
+
+    response = requests.get(endpoint.format(token=token))
+
+    return JsonResponse(response.json(), safe=False)
 
 
-def get_user_age(gender, user):
-    profile = user.profiles.last()
-    dob = user.dob if gender == "you" else profile.dob
+def get_user_age(user):
+    dob = user.dob
     this_year = datetime.date.today().year
     dob_year = dob.year
     age = this_year - dob_year
@@ -47,13 +44,10 @@ def store_response(response_obj):
     response_json = response_obj.json()
     for response in response_json:
         diagnosis.append([
-
             response["Issue"]["Name"],
             response["Issue"]["ID"],
             response["Issue"]["ProfName"]
         ])
-    with open("diagnosis.json", "w") as f2:
-        f2.write(str(diagnosis))
     return diagnosis
 
 
@@ -74,6 +68,28 @@ def start_assessment(request):
     return render(request, "start.html")
 
 
+def search_symptoms(request, gender):
+    pronoun = "him" if gender == "male" else "her"
+    you = "you" if gender == "you" else pronoun
+
+    return render(request=request, template_name="search.html", context={"pronoun": you, })
+
+
+def view_issues(request, id, pronoun):
+    endpoint = "https://healthservice.priaid.ch/diagnosis?symptoms={symptoms}&gender={gender}&year_of_birth={age}&token={token}&format=json&language=en-gb"
+    current_user = request.user if pronoun == "you" else request.user.profiles.last()
+    user_gender = current_user.gender
+    user_age = get_user_age(current_user)
+    token = get_token()
+    symptom_id = [id]
+
+    response = requests.get(endpoint.format(
+        symptoms=symptom_id, gender=user_gender, age=user_age, token=token))
+    diagnosis = store_response(response)
+
+    return render(request, "issues.html", context={"pronoun": pronoun, "diagnosis": diagnosis})
+
+
 def view_diagnosis(request, id, pronoun):
     endpoint = "https://healthservice.priaid.ch/issues/{id}/info?token={token}&format=json&language=en-gb"
     token = get_token()
@@ -87,36 +103,6 @@ def view_diagnosis(request, id, pronoun):
     gender = current_user.gender
 
     return render(request=request, template_name="diagnosis.html", context={"result": result, "current_user": "{username}, {gender}, {year}".format(username=username, gender=gender, year=year)})
-
-
-def search_symptoms(request, gender):
-    endpoint = "https://healthservice.priaid.ch/diagnosis?symptoms={symptoms}&gender={gender}&year_of_birth={age}&token={token}&format=json&language=en-gb"
-    user_gender = request.user.gender if gender == "you" else gender
-    token = get_token()
-
-    pronoun = "him" if gender == "male" else "her"
-    you = "you" if gender == "you" else pronoun
-
-    if request.method == 'POST':
-        form = SearchSymptom(request.POST)
-        if form.is_valid():
-            user_symptom = form.cleaned_data['symptom'].lower()
-            symptom_ids = get_symptom_ids(user_symptom)
-            user_age = get_user_age(gender, request.user)
-            response = requests.get(endpoint.format(
-                symptoms=symptom_ids, gender=user_gender, age=user_age, token=token))
-            diagnosis = store_response(response)
-            # send_to = "/assessment/search/" + gender
-            # return redirect(to=send_to)
-            return render(request=request, template_name="search.html", context={"pronoun": you, "search_form": form, "diagnosis": diagnosis})
-
-    else:
-        form = SearchSymptom()
-    return render(request=request, template_name="search.html", context={"pronoun": you, "search_form": form})
-
-
-def view_symptoms(request):
-    return render(request, "symptoms.html")
 
 
 def set_dob(request):
@@ -143,7 +129,7 @@ def set_new_user_dob(request):
             profile_form = CreateProfileDob(
                 request.POST, instance=last_profile)
         else:
-            profile_form = CreateProfileDob(request.POST)
+            return redirect(to="/assessment/new-user")
 
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
@@ -181,7 +167,7 @@ def set_new_user_gender(request):
             profile_form = CreateProfileGender(
                 request.POST, instance=last_profile)
         else:
-            profile_form = CreateProfileGender(request.POST)
+            return redirect(to="/assessment/new-user")
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
             profile.user = request.user

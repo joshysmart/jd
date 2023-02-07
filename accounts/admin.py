@@ -6,6 +6,10 @@ from .forms import RegisterForm, LoginForm
 from .models import CustomUser, Profile
 
 
+class ProfilesAdmin(admin.ModelAdmin):
+    list_display = ("username", "user")
+
+
 class CustomUserAdmin(UserAdmin):
     add_form = RegisterForm
     form = RegisterForm
@@ -14,4 +18,4 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Profile)
+admin.site.register(Profile, ProfilesAdmin)
